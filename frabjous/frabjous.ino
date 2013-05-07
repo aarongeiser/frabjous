@@ -1,6 +1,6 @@
 #include <SPI.h>
 #include <Wire.h>
-#include <mpr121.h>
+#include "mpr121.h"
 #include <RAS.h>
 
 // Touch Sensor Variables
@@ -26,11 +26,18 @@ void setup(void){
   //  Rugged Audio Shield
   RAS.begin();
   RAS.InitSD();
-
+  delay(100);
+  RAS.OutputEnable();
+  
 }
 
-void loop(){
-  delay(50);
+void loop(void){
+  //delay(1000);
+  //RAS.PlayWAV("test1.wav");
+  //delay(1000);
+  //RAS.PlayWAV("test2.wav");
+  //delay(1000);
+  //RAS.PlayWAV("test3.wav");
   readTouchInputs();
 }
 
@@ -51,30 +58,33 @@ void readTouchInputs(){
       if(touched & (1<<i)){
       
         if(touchStates[i] == 0){
-          //pin i was just touched
-          Serial.print("pin ");
-          Serial.print(i);
-          Serial.println(" was just touched");
-        
-        
           switch (i) {
             case 0:
-              RAS.PlayWAV("test1.WAV");
+              delay(100);
+              RAS.PlayWAV("test1.wav");
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
         
               break;
             case 1:
-              RAS.PlayWAV("test2.WAV");
+              delay(100);
+              RAS.PlayWAV("test2.wav");
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
         
               break; 
             case 2:
-              RAS.PlayWAV("test3.WAV");
-        
-              break; 
-              
-          }
+              delay(100);
+              RAS.PlayWAV("test3.wav");
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+           }
         
         }else if(touchStates[i] == 1){
-          //pin i is still being touched
+         // is still being touched        
         }  
       
         touchStates[i] = 1;      

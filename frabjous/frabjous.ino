@@ -1,20 +1,68 @@
+#include <MIDI.h>
+#include <WiFi.h>
+#include <WiFiClient.h>
+#include <WiFiServer.h>
 #include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
 #include <RAS.h>
 
+/////////////////////////
+// WiFi Shield Variables
+/////////////////////////
+char ssid[] = "pterodactyl"; //  your network SSID (name) 
+char pass[] = "5kM3Ywpf2";    // your network password (use for WPA, or use as key for WEP)
+int keyIndex = 0;            // your network key Index number (needed only for WEP)
+int status = WL_IDLE_STATUS; // status of the wifi connection
+
+// initialize the library instance:
+WiFiClient client;
+
+/////////////////////////
 // Touch Sensor Variables
+/////////////////////////
 int irqpin = 2;  // Digital 2
 boolean touchStates[12]; //to keep track of the previous touch states
 
+/////////////////////////
 // Rugged Audio Shield Variables
-RAS RAS;
-int lastVolume;
+/////////////////////////
+// RAS RAS;
+// int lastVolume;
 
+////////////////////////////////////////////////////////////////////////////
 //  Initialization
+////////////////////////////////////////////////////////////////////////////
 void setup(void){
   
+  ///////////////////////////////
+  // WiFi Connect
+  ///////////////////////////////
+  
+  // check for the presence of the shield:
+  if (WiFi.status() == WL_NO_SHIELD) {
+    Serial.println("WiFi shield not present"); 
+    // don't continue:
+    while(true);
+  } 
+  
+  // attempt to connect to Wifi network:
+  while ( status != WL_CONNECTED) { 
+    Serial.print("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:    
+    status = WiFi.begin(ssid, pass);  
+ 
+    // wait 10 seconds for connection:
+    delay(10000);
+  } 
+  // you're connected now, so print out the status:
+  printWifiStatus();
+  
+  ////////////////////////////////
   // Touch Sensor
+  ///////////////////////////////
+  
   pinMode(irqpin, INPUT);
   digitalWrite(irqpin, HIGH); //enable pullup resistor
   
@@ -23,14 +71,21 @@ void setup(void){
 
   mpr121_setup();
   
-  //  Rugged Audio Shield
-  RAS.begin();
-  RAS.InitSD();
-  delay(100);
-  RAS.OutputEnable();
+  ///////////////////////////////
+  // Rugged Audio
+  ///////////////////////////////
+  
+  // Rugged Audio Shield
+  // RAS.begin();
+  // RAS.InitSD();
+  // delay(100);
+  // RAS.OutputEnable();
   
 }
 
+////////////////////////////////////////////////////////////////////////////
+// Do Things Good
+////////////////////////////////////////////////////////////////////////////
 void loop(void){
   //delay(1000);
   //RAS.PlayWAV("test1.wav");
@@ -41,6 +96,9 @@ void loop(void){
   readTouchInputs();
 }
 
+////////////////////////////////////////////////////////////////////////////
+// Methods
+////////////////////////////////////////////////////////////////////////////
 
 void readTouchInputs(){
   if(!checkInterrupt()){
@@ -60,24 +118,36 @@ void readTouchInputs(){
         if(touchStates[i] == 0){
           switch (i) {
             case 0:
-              delay(100);
-              RAS.PlayWAV("test1.wav");
+            
+              // Rugged Audio Shield (unused)
+              // delay(100);
+              // RAS.PlayWAV("test1.wav");
+              
+              // Test Printing
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
         
               break;
             case 1:
-              delay(100);
-              RAS.PlayWAV("test2.wav");
+            
+              // Rugged Audio Shield (unused)
+              // delay(100);
+              // RAS.PlayWAV("test2.wav");
+              
+              // Test Printing
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
         
               break; 
             case 2:
-              delay(100);
-              RAS.PlayWAV("test3.wav");
+            
+              // Rugged Audio Shield (unused)
+              // delay(100);
+              // RAS.PlayWAV("test3.wav");
+              
+              // Test Printing
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -90,6 +160,8 @@ void readTouchInputs(){
         touchStates[i] = 1;      
       }else{
         if(touchStates[i] == 1){
+          
+          // Test Printing
           Serial.print("pin ");
           Serial.print(i);
           Serial.println(" is no longer being touched");
@@ -193,4 +265,21 @@ void set_register(int address, unsigned char r, unsigned char v){
     Wire.write(r);
     Wire.write(v);
     Wire.endTransmission();
+}
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your WiFi shield's IP address:
+  IPAddress ip = WiFi.localIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
 }

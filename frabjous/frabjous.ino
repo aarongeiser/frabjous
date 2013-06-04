@@ -7,10 +7,6 @@
 int irqpin = 2;  // Digital 2
 boolean touchStates[12]; //to keep track of the previous touch states
 
-// Rugged Audio Shield Variables
-RAS RAS;
-int lastVolume;
-
 //  Initialization
 void setup(void){
   
@@ -23,21 +19,9 @@ void setup(void){
 
   mpr121_setup();
   
-  //  Rugged Audio Shield
-  RAS.begin();
-  RAS.InitSD();
-  delay(100);
-  RAS.OutputEnable();
-  
 }
 
 void loop(void){
-  //delay(1000);
-  //RAS.PlayWAV("test1.wav");
-  //delay(1000);
-  //RAS.PlayWAV("test2.wav");
-  //delay(1000);
-  //RAS.PlayWAV("test3.wav");
   readTouchInputs();
 }
 

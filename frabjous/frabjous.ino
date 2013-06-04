@@ -14,10 +14,11 @@ void setup(void){
   pinMode(irqpin, INPUT);
   digitalWrite(irqpin, HIGH); //enable pullup resistor
   
-  Serial.begin(9600);
   Wire.begin();
 
   mpr121_setup();
+  
+  Serial.begin(31250);
   
 }
 
@@ -45,26 +46,26 @@ void readTouchInputs(){
           switch (i) {
             case 0:
               delay(100);
-              RAS.PlayWAV("test1.wav");
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 60, 100);
         
               break;
             case 1:
               delay(100);
-              RAS.PlayWAV("test2.wav");
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 62, 100);
         
               break; 
             case 2:
               delay(100);
-              RAS.PlayWAV("test3.wav");
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 64, 100);
            }
         
         }else if(touchStates[i] == 1){
@@ -77,8 +78,30 @@ void readTouchInputs(){
           Serial.print("pin ");
           Serial.print(i);
           Serial.println(" is no longer being touched");
-          
-          //pin i is no longer being touched
+          switch (i) {
+            case 0:
+              delay(100);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(128, 60, 100);
+        
+              break;
+            case 1:
+              delay(100);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(128, 62, 100);
+        
+              break; 
+            case 2:
+              delay(100);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(128, 64, 100);
+           }
        }
         
         touchStates[i] = 0;
@@ -177,4 +200,12 @@ void set_register(int address, unsigned char r, unsigned char v){
     Wire.write(r);
     Wire.write(v);
     Wire.endTransmission();
+}
+
+//  plays a MIDI note.  Doesn't check to see that
+//  cmd is greater than 127, or that data values are  less than 127:
+void midiSend(int cmd, int pitch, int velocity) {
+  Serial.write(cmd);
+  Serial.write(pitch);
+  Serial.write(velocity);
 }

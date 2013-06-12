@@ -52,7 +52,7 @@ void readTouchInputs(){
         if(touchStates[i] == 0){
           switch (i) {
             case 0:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -60,7 +60,7 @@ void readTouchInputs(){
         
               break;
             case 1:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -68,7 +68,7 @@ void readTouchInputs(){
         
               break; 
             case 2:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -76,7 +76,7 @@ void readTouchInputs(){
               
               break;
             case 3:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -84,7 +84,7 @@ void readTouchInputs(){
         
               break; 
             case 4:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -92,7 +92,7 @@ void readTouchInputs(){
               
               break;
             case 5:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -100,7 +100,7 @@ void readTouchInputs(){
         
               break; 
             case 6:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -108,7 +108,7 @@ void readTouchInputs(){
               
               break;
             case 7:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -116,7 +116,7 @@ void readTouchInputs(){
         
               break; 
             case 8:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -124,7 +124,7 @@ void readTouchInputs(){
               
               break;
             case 9:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -132,7 +132,7 @@ void readTouchInputs(){
         
               break; 
             case 10:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -140,7 +140,7 @@ void readTouchInputs(){
               
               break;
             case 11:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -157,7 +157,7 @@ void readTouchInputs(){
         if(touchStates[i] == 1){
           switch (i) {
             case 0:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -165,7 +165,7 @@ void readTouchInputs(){
         
               break;
             case 1:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -173,7 +173,7 @@ void readTouchInputs(){
         
               break; 
             case 2:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -181,7 +181,7 @@ void readTouchInputs(){
               
               break;
             case 3:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -189,7 +189,7 @@ void readTouchInputs(){
         
               break; 
             case 4:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -197,7 +197,7 @@ void readTouchInputs(){
               
               break;
             case 5:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -205,7 +205,7 @@ void readTouchInputs(){
         
               break; 
             case 6:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -213,7 +213,7 @@ void readTouchInputs(){
               
               break;
             case 7:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -221,7 +221,7 @@ void readTouchInputs(){
         
               break; 
             case 8:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -229,7 +229,7 @@ void readTouchInputs(){
               
               break;
             case 9:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -237,7 +237,7 @@ void readTouchInputs(){
         
               break; 
             case 10:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -245,7 +245,7 @@ void readTouchInputs(){
               
               break;
             case 11:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -280,7 +280,7 @@ void readTouchInputs(){
         if(touchStatesTwo[i] == 0){
           switch (i) {
             case 0:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -288,7 +288,7 @@ void readTouchInputs(){
         
               break;
             case 1:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -296,7 +296,7 @@ void readTouchInputs(){
         
               break; 
             case 2:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -312,7 +312,7 @@ void readTouchInputs(){
         if(touchStatesTwo[i] == 1){
           switch (i) {
             case 0:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -320,7 +320,7 @@ void readTouchInputs(){
         
               break;
             case 1:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -328,7 +328,7 @@ void readTouchInputs(){
         
               break; 
             case 2:
-              delay(100);
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
@@ -443,8 +443,8 @@ void mpr121_setupTwo(void){
   set_register(0x5D, ELE1_T, TOU_THRESH);
   set_register(0x5D, ELE1_R, REL_THRESH);
   
-  set_register(0x5D, ELE2_T, TOU_THRESH);
-  set_register(0x5D, ELE2_R, REL_THRESH);
+  set_register(0x5D, ELE2_T, 0x72);
+  set_register(0x5D, ELE2_R, 0x6A);
   
   set_register(0x5D, ELE3_T, TOU_THRESH);
   set_register(0x5D, ELE3_R, REL_THRESH);

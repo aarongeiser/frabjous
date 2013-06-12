@@ -1,9 +1,10 @@
 #include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
+#include <DmxMaster.h>
 
 // Touch Sensor Variables
-int irqpin = 3;  // Digital 2
+int irqpin = 2;  // Digital 2
 int irqpinTwo = 4;  // Digital 3 - Sensor 2
 boolean touchStates[12]; //to keep track of the previous touch states
 boolean touchStatesTwo[12]; //to keep track of the previous touch states
@@ -25,6 +26,17 @@ void setup(void){
   mpr121_setupTwo();
   
   Serial.begin(31250);
+  
+  /* The most common pin for DMX output is pin 3, which DmxMaster
+** uses by default. If you need to change that, do it here. */
+  DmxMaster.usePin(3);
+
+  /* DMX devices typically need to receive a complete set of channels
+** even if you only need to adjust the first channel. You can
+** easily change the number of channels sent here. If you don't
+** do this, DmxMaster will set the maximum channel number to the
+** highest channel you DmxMaster.write() to. */
+  DmxMaster.maxChannel(60);
   
 }
 
@@ -57,6 +69,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 60, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
         
               break;
             case 1:
@@ -162,6 +177,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(128, 60, 100);
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
         
               break;
             case 1:

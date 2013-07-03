@@ -12,9 +12,11 @@ boolean touchStates[12]; //to keep track of the previous touch states
 boolean touchStatesTwo[12]; //to keep track of the previous touch states
 
 // Set software serial pins
-SoftwareSerial mySerial(8, 9); // RX, TX
+SoftwareSerial mySerial(10,11); // RX, TX
 
-
+/** ****************************************************
+********************************************************
+*******************************************************/
 
 //  Initialization
 void setup(void){
@@ -30,7 +32,7 @@ void setup(void){
   mpr121_setup();
   mpr121_setupTwo();
   
-  Serial.begin(31250);
+  Serial.begin(9600);
   
   /* The most common pin for DMX output is pin 3, which DmxMaster
 ** uses by default. If you need to change that, do it here. */
@@ -43,27 +45,36 @@ void setup(void){
 ** highest channel you DmxMaster.write() to. */
   DmxMaster.maxChannel(60);
   
+  /*  set the data rate for the SoftwareSerial port  */
+  mySerial.begin(31250);
+  
 }
+
+/** ****************************************************
+********************************************************
+*******************************************************/
 
 void loop(void){
   readTouchInputs();
 }
 
-//  First Capacitive Touch Sensor
+/** ****************************************************
+********************************************************
+*******************************************************/
 
+//********************  FIRST Capacitive Touch Sensor
 void readTouchInputs(){
+  
   if(!checkInterrupt()){
     
     //read the touch state from the MPR121
-    Wire.requestFrom(0x5A,3); 
-    
+    Wire.requestFrom(0x5A,3);  
     byte LSB = Wire.read();
-    byte MSB = Wire.read();
-    
+    byte MSB = Wire.read();  
     uint16_t touched = ((MSB << 8) | LSB); //16bits that make up the touch states
-
+  
+    for (int i=0; i < 12; i++){  // Check which electrodes were pressed
     
-    for (int i=0; i < 12; i++){  // Check what electrodes were pressed
       if(touched & (1<<i)){
       
         if(touchStates[i] == 0){
@@ -180,7 +191,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 60, 100);
               DmxMaster.write(32, 0);
               DmxMaster.write(33, 0);
@@ -191,7 +202,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 61, 100);
         
               break; 
@@ -199,7 +210,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 62, 100);
               
               break;
@@ -207,7 +218,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 63, 100);
         
               break; 
@@ -215,7 +226,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 64, 100);
               
               break;
@@ -223,7 +234,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 65, 100);
         
               break; 
@@ -231,7 +242,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 66, 100);
               
               break;
@@ -239,7 +250,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 67, 100);
         
               break; 
@@ -247,7 +258,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 68, 100);
               
               break;
@@ -255,7 +266,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 69, 100);
         
               break; 
@@ -263,7 +274,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 70, 100);
               
               break;
@@ -271,7 +282,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 71, 100);
         
            }
@@ -285,19 +296,19 @@ void readTouchInputs(){
   }
   
   
-  //  Second Touch Sensor
+//********************  SECOND Capacitive Touch Sensor
   if(!checkInterruptTwo()){
     
-    //read the touch state from the MPR121
+    // read the touch state from the MPR121
     Wire.requestFrom(0x5D,4); 
     
     byte LSB = Wire.read();
     byte MSB = Wire.read();
     
-    uint16_t touched = ((MSB << 8) | LSB); //16bits that make up the touch states
-
-    
+    uint16_t touched = ((MSB << 8) | LSB); // 16bits that make up the touch states
+  
     for (int i=0; i < 12; i++){  // Check what electrodes were pressed
+    
       if(touched & (1<<i)){
       
         if(touchStatesTwo[i] == 0){
@@ -338,7 +349,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 72, 100);
         
               break;
@@ -346,7 +357,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 73, 100);
         
               break; 
@@ -354,7 +365,7 @@ void readTouchInputs(){
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
-              Serial.println(" is being touched");
+              Serial.println(" is no longer being touched");
               midiSend(128, 74, 100);
            }
        }

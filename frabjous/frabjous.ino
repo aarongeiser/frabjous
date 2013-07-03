@@ -1,13 +1,18 @@
+#include <SoftwareSerial.h>
 #include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
 #include <DmxMaster.h>
+
 
 // Touch Sensor Variables
 int irqpin = 2;  // Digital 2
 int irqpinTwo = 4;  // Digital 3 - Sensor 2
 boolean touchStates[12]; //to keep track of the previous touch states
 boolean touchStatesTwo[12]; //to keep track of the previous touch states
+
+// Set software serial pins
+SoftwareSerial mySerial(8, 9); // RX, TX
 
 
 
@@ -531,8 +536,9 @@ void set_register(int address, unsigned char r, unsigned char v){
 
 //  plays a MIDI note.  Doesn't check to see that
 //  cmd is greater than 127, or that data values are  less than 127:
+//  Uses softSerial on pins 10 and 11
 void midiSend(int cmd, int pitch, int velocity) {
-  Serial.write(cmd);
-  Serial.write(pitch);
-  Serial.write(velocity);
+  mySerial.write(cmd);
+  mySerial.write(pitch);
+  mySerial.write(velocity);
 }

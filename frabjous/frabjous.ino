@@ -1,18 +1,18 @@
-#include <SoftwareSerial.h>
 #include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
 #include <DmxMaster.h>
+#include <SoftwareSerial.h>
 
+// Set software serial pins
+#define rxPin 10
+#define txPin 11
+SoftwareSerial mySerial(rxPin,txPin); // RX, TX
 
 // Touch Sensor Variables
 int irqpin = 2;  // Digital 2
-int irqpinTwo = 4;  // Digital 3 - Sensor 2
 boolean touchStates[12]; //to keep track of the previous touch states
 boolean touchStatesTwo[12]; //to keep track of the previous touch states
-
-// Set software serial pins
-SoftwareSerial mySerial(10,11); // RX, TX
 
 /** ****************************************************
 ********************************************************
@@ -25,14 +25,9 @@ void setup(void){
   pinMode(irqpin, INPUT);
   digitalWrite(irqpin, HIGH); //enable pullup resistor
   
-  pinMode(irqpinTwo, INPUT);
-  digitalWrite(irqpinTwo, HIGH); //enable pullup resistor
-  
   Wire.begin();
   mpr121_setup();
   mpr121_setupTwo();
-  
-  Serial.begin(9600);
   
   /* The most common pin for DMX output is pin 3, which DmxMaster
 ** uses by default. If you need to change that, do it here. */
@@ -45,8 +40,15 @@ void setup(void){
 ** highest channel you DmxMaster.write() to. */
   DmxMaster.maxChannel(60);
   
+  // Begin serial ports
+  Serial.begin(9600);
+  Serial.flush();
+  
   /*  set the data rate for the SoftwareSerial port  */
   mySerial.begin(31250);
+  mySerial.flush();
+  
+  delay(1000);
   
 }
 
@@ -329,7 +331,7 @@ void readTouchInputs(){
               midiSend(144, 73, 100);
         
               break; 
-            case 2:
+            case 3:
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
@@ -361,7 +363,7 @@ void readTouchInputs(){
               midiSend(128, 73, 100);
         
               break; 
-            case 2:
+            case 3:
               delay(10);
               Serial.print("pin ");
               Serial.print(i);
@@ -534,7 +536,7 @@ boolean checkInterrupt(void){
 }
 
 boolean checkInterruptTwo(void){
-  return digitalRead(irqpinTwo);
+  return digitalRead(irqpin);
 }
 
 

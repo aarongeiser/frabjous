@@ -5,8 +5,8 @@
 #include <SoftwareSerial.h>
 
 // Set software serial pins
-#define rxPin 10
-#define txPin 11
+#define rxPin 8
+#define txPin 9
 SoftwareSerial mySerial(rxPin,txPin); // RX, TX
 
 // Touch Sensor Variables
@@ -42,21 +42,17 @@ void setup(void){
   
   // Begin serial ports
   Serial.begin(9600);
-  Serial.flush();
   
   /*  set the data rate for the SoftwareSerial port  */
   mySerial.begin(31250);
-  mySerial.flush();
-  
-  delay(1000);
-  
+
 }
 
 /** ****************************************************
 ********************************************************
 *******************************************************/
 
-void loop(void){
+void loop(void){b
   readTouchInputs();
 }
 
@@ -82,7 +78,7 @@ void readTouchInputs(){
         if(touchStates[i] == 0){
           switch (i) {
             case 0:
-              delay(10);
+              delay(5);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");

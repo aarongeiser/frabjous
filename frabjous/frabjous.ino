@@ -83,9 +83,6 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 60, 100);
-              DmxMaster.write(32, 128);
-              DmxMaster.write(33, 128);
-              DmxMaster.write(34, 128);
         
               break;
             case 1:
@@ -102,6 +99,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 62, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
               
               break;
             case 3:
@@ -191,9 +191,6 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 60, 100);
-              DmxMaster.write(32, 0);
-              DmxMaster.write(33, 0);
-              DmxMaster.write(34, 0);
         
               break;
             case 1:
@@ -210,6 +207,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 62, 100);
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
               
               break;
             case 3:
@@ -317,6 +317,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 72, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
         
               break;
             case 1:
@@ -348,7 +351,10 @@ void readTouchInputs(){
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is no longer being touched");
-              midiSend(128, 72, 100);
+              midiSend(128, 72, 100);              
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
         
               break;
             case 1:
@@ -401,8 +407,8 @@ void mpr121_setup(void){
   set_register(0x5A, ELE1_T, TOU_THRESH);
   set_register(0x5A, ELE1_R, REL_THRESH);
   
-  set_register(0x5A, ELE2_T, TOU_THRESH);
-  set_register(0x5A, ELE2_R, REL_THRESH);
+  set_register(0x5A, ELE2_T, 0x8C);
+  set_register(0x5A, ELE2_R, 0x85);
   
   set_register(0x5A, ELE3_T, TOU_THRESH);
   set_register(0x5A, ELE3_R, REL_THRESH);
@@ -444,11 +450,12 @@ void mpr121_setup(void){
   
   // Section F
   // Enable Auto Config and auto Reconfig
-  /*set_register(0x5A, ATO_CFG0, 0x0B);
-  set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V   set_register(0x5A, ATO_CFGL, 0x82);  // LSL = 0.65*USL = 0x82 @3.3V
-  set_register(0x5A, ATO_CFGT, 0xB5);*/  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5A, ATO_CFG0, 0x0B);
+  set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+                                       // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5A, ATO_CFGT, 0xB5);  // Target = 0.9*USL = 0xB5 @3.3V
   
-  set_register(0x5A, ELE_CFG, 0x0C);
+  //set_register(0x5A, ELE_CFG, 0x0C);
   
 }
 
@@ -475,8 +482,8 @@ void mpr121_setupTwo(void){
   set_register(0x5D, ELE1_T, TOU_THRESH);
   set_register(0x5D, ELE1_R, REL_THRESH);
   
-  set_register(0x5D, ELE2_T, 0x72);
-  set_register(0x5D, ELE2_R, 0x6A);
+  set_register(0x5D, ELE2_T, TOU_THRESH);
+  set_register(0x5D, ELE2_R, REL_THRESH);
   
   set_register(0x5D, ELE3_T, TOU_THRESH);
   set_register(0x5D, ELE3_R, REL_THRESH);
@@ -518,11 +525,11 @@ void mpr121_setupTwo(void){
   
   // Section F
   // Enable Auto Config and auto Reconfig
-  /*set_register(0x5A, ATO_CFG0, 0x0B);
+  set_register(0x5A, ATO_CFG0, 0x0B);
   set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V   set_register(0x5A, ATO_CFGL, 0x82);  // LSL = 0.65*USL = 0x82 @3.3V
-  set_register(0x5A, ATO_CFGT, 0xB5);*/  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5A, ATO_CFGT, 0xB5);  // Target = 0.9*USL = 0xB5 @3.3V
   
-  set_register(0x5D, ELE_CFG, 0x0C);
+  //set_register(0x5D, ELE_CFG, 0x0C);
   
 }
 

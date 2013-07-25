@@ -14,6 +14,16 @@ int irqpin = 2;  // Digital 2
 boolean touchStates[12]; //to keep track of the previous touch states
 boolean touchStatesTwo[12]; //to keep track of the previous touch states
 
+// Define thresholds for points
+#define SHORT_POINT_ON 0x09
+#define SHORT_POINT_OFF 0x05
+
+#define MED_POINT_ON 0x03
+#define MED_POINT_OFF 0x01
+
+#define LONG_POINT_ON 0x04
+#define LONG_POINT_OFF 0x01
+
 /** ****************************************************
 ********************************************************
 *******************************************************/
@@ -83,6 +93,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 60, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
         
               break;
             case 1:
@@ -91,6 +104,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 61, 100);
+              DmxMaster.write(35, 128);
+              DmxMaster.write(36, 128);
+              DmxMaster.write(37, 128);
         
               break; 
             case 2:
@@ -99,9 +115,10 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 62, 100);
-              DmxMaster.write(32, 128);
-              DmxMaster.write(33, 128);
-              DmxMaster.write(34, 128);
+              DmxMaster.write(38, 128);
+              DmxMaster.write(39, 128);
+              DmxMaster.write(40, 128);
+
               
               break;
             case 3:
@@ -110,6 +127,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 63, 100);
+              DmxMaster.write(41, 128);
+              DmxMaster.write(42, 128);
+              DmxMaster.write(43, 128);
         
               break; 
             case 4:
@@ -118,6 +138,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 64, 100);
+              DmxMaster.write(44, 128);
+              DmxMaster.write(45, 128);
+              DmxMaster.write(46, 128);
               
               break;
             case 5:
@@ -126,6 +149,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 65, 100);
+              DmxMaster.write(47, 128);
+              DmxMaster.write(48, 128);
+              DmxMaster.write(49, 128);
         
               break; 
             case 6:
@@ -134,6 +160,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 66, 100);
+              DmxMaster.write(50, 128);
+              DmxMaster.write(51, 128);
+              DmxMaster.write(52, 128);
               
               break;
             case 7:
@@ -142,6 +171,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 67, 100);
+              DmxMaster.write(53, 128);
+              DmxMaster.write(54, 128);
+              DmxMaster.write(55, 128);
         
               break; 
             case 8:
@@ -150,6 +182,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 68, 100);
+              DmxMaster.write(56, 128);
+              DmxMaster.write(57, 128);
+              DmxMaster.write(58, 128);
               
               break;
             case 9:
@@ -158,6 +193,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 69, 100);
+              DmxMaster.write(64, 128);
+              DmxMaster.write(65, 128);
+              DmxMaster.write(66, 128);
         
               break; 
             case 10:
@@ -191,6 +229,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 60, 100);
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
         
               break;
             case 1:
@@ -199,6 +240,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 61, 100);
+              DmxMaster.write(35, 0);
+              DmxMaster.write(36, 0);
+              DmxMaster.write(37, 0);
         
               break; 
             case 2:
@@ -207,9 +251,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 62, 100);
-              DmxMaster.write(32, 0);
-              DmxMaster.write(33, 0);
-              DmxMaster.write(34, 0);
+              DmxMaster.write(38, 0);
+              DmxMaster.write(39, 0);
+              DmxMaster.write(40, 0);
               
               break;
             case 3:
@@ -218,6 +262,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 63, 100);
+              DmxMaster.write(41, 0);
+              DmxMaster.write(42, 0);
+              DmxMaster.write(43, 0);
         
               break; 
             case 4:
@@ -226,6 +273,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 64, 100);
+              DmxMaster.write(44, 0);
+              DmxMaster.write(45, 0);
+              DmxMaster.write(46, 0);
               
               break;
             case 5:
@@ -234,6 +284,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 65, 100);
+              DmxMaster.write(47, 0);
+              DmxMaster.write(48, 0);
+              DmxMaster.write(49, 0);
         
               break; 
             case 6:
@@ -242,6 +295,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 66, 100);
+              DmxMaster.write(50, 0);
+              DmxMaster.write(51, 0);
+              DmxMaster.write(52, 0);
               
               break;
             case 7:
@@ -250,6 +306,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 67, 100);
+              DmxMaster.write(53, 0);
+              DmxMaster.write(54, 0);
+              DmxMaster.write(55, 0);
         
               break; 
             case 8:
@@ -258,6 +317,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 68, 100);
+              DmxMaster.write(56, 0);
+              DmxMaster.write(57, 0);
+              DmxMaster.write(58, 0);
               
               break;
             case 9:
@@ -266,6 +328,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 69, 100);
+              DmxMaster.write(64, 0);
+              DmxMaster.write(65, 0);
+              DmxMaster.write(66, 0);
         
               break; 
             case 10:
@@ -401,41 +466,41 @@ void mpr121_setup(void){
   set_register(0x5A, FDL_F, 0x02);
   
   // Section C - Sets touch and release thresholds for each electrode
-  set_register(0x5A, ELE0_T, TOU_THRESH);
-  set_register(0x5A, ELE0_R, REL_THRESH);
+  set_register(0x5A, ELE0_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE0_R, SHORT_POINT_OFF);
  
-  set_register(0x5A, ELE1_T, TOU_THRESH);
-  set_register(0x5A, ELE1_R, REL_THRESH);
+  set_register(0x5A, ELE1_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE1_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE2_T, 0x8C);
-  set_register(0x5A, ELE2_R, 0x85);
+  set_register(0x5A, ELE2_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE2_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE3_T, TOU_THRESH);
-  set_register(0x5A, ELE3_R, REL_THRESH);
+  set_register(0x5A, ELE3_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE3_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE4_T, TOU_THRESH);
-  set_register(0x5A, ELE4_R, REL_THRESH);
+  set_register(0x5A, ELE4_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE4_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE5_T, TOU_THRESH);
-  set_register(0x5A, ELE5_R, REL_THRESH);
+  set_register(0x5A, ELE5_T, LONG_POINT_ON);
+  set_register(0x5A, ELE5_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE6_T, TOU_THRESH);
-  set_register(0x5A, ELE6_R, REL_THRESH);
+  set_register(0x5A, ELE6_T, MED_POINT_ON);
+  set_register(0x5A, ELE6_R, MED_POINT_OFF);
   
-  set_register(0x5A, ELE7_T, TOU_THRESH);
-  set_register(0x5A, ELE7_R, REL_THRESH);
+  set_register(0x5A, ELE7_T, LONG_POINT_ON);
+  set_register(0x5A, ELE7_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE8_T, TOU_THRESH);
-  set_register(0x5A, ELE8_R, REL_THRESH);
+  set_register(0x5A, ELE8_T, MED_POINT_ON);
+  set_register(0x5A, ELE8_R, MED_POINT_OFF);
   
-  set_register(0x5A, ELE9_T, TOU_THRESH);
-  set_register(0x5A, ELE9_R, REL_THRESH);
+  set_register(0x5A, ELE9_T, LONG_POINT_ON);
+  set_register(0x5A, ELE9_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE10_T, TOU_THRESH);
-  set_register(0x5A, ELE10_R, REL_THRESH);
+  set_register(0x5A, ELE10_T, MED_POINT_ON);
+  set_register(0x5A, ELE10_R, MED_POINT_OFF);
   
-  set_register(0x5A, ELE11_T, TOU_THRESH);
-  set_register(0x5A, ELE11_R, REL_THRESH);
+  set_register(0x5A, ELE11_T, LONG_POINT_ON);
+  set_register(0x5A, ELE11_R, LONG_POINT_OFF);
   
   // Section D
   // Set the Filter Configuration
@@ -451,9 +516,9 @@ void mpr121_setup(void){
   // Section F
   // Enable Auto Config and auto Reconfig
   set_register(0x5A, ATO_CFG0, 0x0B);
-  set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
-                                       // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
-  set_register(0x5A, ATO_CFGT, 0xB5);  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5A, ATO_CFGU, 220);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+  set_register(0x5A, ATO_CFGL, 101);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5A, ATO_CFGT, 160);  // Target = 0.9*USL = 0xB5 @3.3V
   
   //set_register(0x5A, ELE_CFG, 0x0C);
   
@@ -476,29 +541,29 @@ void mpr121_setupTwo(void){
   set_register(0x5D, FDL_F, 0x02);
   
   // Section C - Sets touch and release thresholds for each electrode
-  set_register(0x5D, ELE0_T, TOU_THRESH);
-  set_register(0x5D, ELE0_R, REL_THRESH);
+  set_register(0x5D, ELE0_T, MED_POINT_ON);
+  set_register(0x5D, ELE0_R, MED_POINT_OFF);
  
-  set_register(0x5D, ELE1_T, TOU_THRESH);
-  set_register(0x5D, ELE1_R, REL_THRESH);
+  set_register(0x5D, ELE1_T, LONG_POINT_ON);
+  set_register(0x5D, ELE1_R, LONG_POINT_OFF);
   
-  set_register(0x5D, ELE2_T, TOU_THRESH);
-  set_register(0x5D, ELE2_R, REL_THRESH);
+  set_register(0x5D, ELE2_T, MED_POINT_ON);
+  set_register(0x5D, ELE2_R, MED_POINT_OFF);
   
-  set_register(0x5D, ELE3_T, TOU_THRESH);
-  set_register(0x5D, ELE3_R, REL_THRESH);
+  set_register(0x5D, ELE3_T, MED_POINT_ON);
+  set_register(0x5D, ELE3_R, MED_POINT_OFF);
   
-  set_register(0x5D, ELE4_T, TOU_THRESH);
-  set_register(0x5D, ELE4_R, REL_THRESH);
+  set_register(0x5D, ELE4_T, MED_POINT_ON);
+  set_register(0x5D, ELE4_R, MED_POINT_OFF);
   
-  set_register(0x5D, ELE5_T, TOU_THRESH);
-  set_register(0x5D, ELE5_R, REL_THRESH);
+  set_register(0x5D, ELE5_T, MED_POINT_ON);
+  set_register(0x5D, ELE5_R, MED_POINT_OFF);
 
-  set_register(0x5D, ELE6_T, TOU_THRESH);
-  set_register(0x5D, ELE6_R, REL_THRESH);
+  set_register(0x5D, ELE6_T, MED_POINT_ON);
+  set_register(0x5D, ELE6_R, MED_POINT_OFF);
   
-  set_register(0x5D, ELE7_T, TOU_THRESH);
-  set_register(0x5D, ELE7_R, REL_THRESH);
+  set_register(0x5D, ELE7_T, MED_POINT_ON);
+  set_register(0x5D, ELE7_R, MED_POINT_OFF);
   
   set_register(0x5D, ELE8_T, TOU_THRESH);
   set_register(0x5D, ELE8_R, REL_THRESH);
@@ -525,9 +590,10 @@ void mpr121_setupTwo(void){
   
   // Section F
   // Enable Auto Config and auto Reconfig
-  set_register(0x5A, ATO_CFG0, 0x0B);
-  set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V   set_register(0x5A, ATO_CFGL, 0x82);  // LSL = 0.65*USL = 0x82 @3.3V
-  set_register(0x5A, ATO_CFGT, 0xB5);  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5D, ATO_CFG0, 0x0B);
+  set_register(0x5D, ATO_CFGU, 220);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+  set_register(0x5D, ATO_CFGL, 101);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5D, ATO_CFGT, 160);  // Target = 0.9*USL = 0xB5 @3.3V
   
   //set_register(0x5D, ELE_CFG, 0x0C);
   

@@ -204,6 +204,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is being touched");
               midiSend(144, 70, 100);
+              DmxMaster.write(67, 128);
+              DmxMaster.write(68, 128);
+              DmxMaster.write(69, 128);
               
               break;
             case 11:
@@ -339,6 +342,9 @@ void readTouchInputs(){
               Serial.print(i);
               Serial.println(" is no longer being touched");
               midiSend(128, 70, 100);
+              DmxMaster.write(67, 0);
+              DmxMaster.write(68, 0);
+              DmxMaster.write(69, 0);
               
               break;
             case 11:
@@ -496,8 +502,8 @@ void mpr121_setup(void){
   set_register(0x5A, ELE9_T, LONG_POINT_ON);
   set_register(0x5A, ELE9_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE10_T, MED_POINT_ON);
-  set_register(0x5A, ELE10_R, MED_POINT_OFF);
+  set_register(0x5A, ELE10_T, 0x01);
+  set_register(0x5A, ELE10_R, 0x00);
   
   set_register(0x5A, ELE11_T, LONG_POINT_ON);
   set_register(0x5A, ELE11_R, LONG_POINT_OFF);
@@ -516,9 +522,9 @@ void mpr121_setup(void){
   // Section F
   // Enable Auto Config and auto Reconfig
   set_register(0x5A, ATO_CFG0, 0x0B);
-  set_register(0x5A, ATO_CFGU, 220);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
-  set_register(0x5A, ATO_CFGL, 101);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
-  set_register(0x5A, ATO_CFGT, 160);  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5A, ATO_CFGU, 0x0F);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+  set_register(0x5A, ATO_CFGL, 0x01);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5A, ATO_CFGT, 0x08);  // Target = 0.9*USL = 0xB5 @3.3V
   
   //set_register(0x5A, ELE_CFG, 0x0C);
   

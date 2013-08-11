@@ -1,4 +1,5 @@
-#include <SPI.h>
+opmne
+"ER#include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
 #include <DmxMaster.h>
@@ -63,7 +64,107 @@ void setup(void){
 *******************************************************/
 
 void loop(void){
-  readTouchInputs();
+  //readTouchInputs();
+  
+  //  #1
+    DmxMaster.write(32, 128);
+    DmxMaster.write(33, 128);
+    DmxMaster.write(34, 128);
+    
+  //  #2
+    DmxMaster.write(35, 128);
+    DmxMaster.write(36, 128);
+    DmxMaster.write(37, 128);
+    
+  //  #3
+    DmxMaster.write(38, 128);
+    DmxMaster.write(39, 128);
+    DmxMaster.write(40, 128);
+    
+  //  #4
+    DmxMaster.write(41, 128);
+    DmxMaster.write(42, 128);
+    DmxMaster.write(43, 128);
+    
+  //  #5
+    DmxMaster.write(44, 128);
+    DmxMaster.write(45, 128);
+    DmxMaster.write(46, 128);
+    
+  //  #6
+    DmxMaster.write(47, 128);
+    DmxMaster.write(48, 128);
+    DmxMaster.write(49, 128);
+    
+  //  #7
+    DmxMaster.write(50, 128);
+    DmxMaster.write(51, 128);
+    DmxMaster.write(52, 128);
+    
+  //  #8
+    DmxMaster.write(53, 128);
+    DmxMaster.write(54, 128);
+    DmxMaster.write(55, 128);
+    
+  //  #9
+    DmxMaster.write(56, 128);
+    DmxMaster.write(57, 128);
+    DmxMaster.write(58, 128);
+    
+  //  #10
+    DmxMaster.write(64, 128);
+    DmxMaster.write(65, 128);
+    DmxMaster.write(66, 128);
+    
+  //  #11
+    DmxMaster.write(67, 128);
+    DmxMaster.write(68, 128);
+    DmxMaster.write(69, 128);
+    
+  //  #12
+    DmxMaster.write(70, 128);
+    DmxMaster.write(71, 128);
+    DmxMaster.write(72, 128);
+    
+  //  #13
+    DmxMaster.write(73, 128);
+    DmxMaster.write(74, 128);
+    DmxMaster.write(75, 128);
+    
+  //  #14
+    DmxMaster.write(76, 128);
+    DmxMaster.write(77, 128);
+    DmxMaster.write(78, 128);
+    
+  //  #15
+    DmxMaster.write(79, 128);
+    DmxMaster.write(80, 128);
+    DmxMaster.write(81, 128);
+
+  //  #16
+    DmxMaster.write(82, 128);
+    DmxMaster.write(83, 128);
+    DmxMaster.write(84, 128);
+    
+  //  #17
+    DmxMaster.write(85, 128);
+    DmxMaster.write(86, 128);
+    DmxMaster.write(87, 128);
+    
+  //  #18
+    DmxMaster.write(88, 128);
+    DmxMaster.write(89, 128);
+    DmxMaster.write(90, 128);
+    
+  //  #19
+    DmxMaster.write(91, 128);
+    DmxMaster.write(92, 128);
+    DmxMaster.write(93, 128);
+    
+  //  #20
+    DmxMaster.write(94, 128);
+    DmxMaster.write(95, 128);
+    DmxMaster.write(96, 128);
 }
 
 /** ****************************************************
@@ -71,6 +172,7 @@ void loop(void){
 *******************************************************/
 
 //********************  FIRST Capacitive Touch Sensor
+/*
 void readTouchInputs(){
   
   if(!checkInterrupt()){
@@ -605,6 +707,7 @@ void mpr121_setupTwo(void){
   
 }
 
+*/
 
 boolean checkInterrupt(void){
   return digitalRead(irqpin);

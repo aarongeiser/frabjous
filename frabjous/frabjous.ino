@@ -1,5 +1,4 @@
-opmne
-"ER#include <SPI.h>
+#include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
 #include <DmxMaster.h>
@@ -37,8 +36,8 @@ void setup(void){
   digitalWrite(irqpin, HIGH); //enable pullup resistor
   
   Wire.begin();
-  mpr121_setup();
-  mpr121_setupTwo();
+  // mpr121_setup();
+  // mpr121_setupTwo();
   
   /* The most common pin for DMX output is pin 3, which DmxMaster
 ** uses by default. If you need to change that, do it here. */

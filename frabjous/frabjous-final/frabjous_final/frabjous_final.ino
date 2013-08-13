@@ -110,7 +110,9 @@ void initializeFrabjous(){
           DmxMaster.write(33, 128);
           DmxMaster.write(34, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");
         }
         break;
         
@@ -125,7 +127,9 @@ void initializeFrabjous(){
           DmxMaster.write(36, 128);
           DmxMaster.write(37, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -140,7 +144,9 @@ void initializeFrabjous(){
           DmxMaster.write(39, 128);
           DmxMaster.write(40, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -155,7 +161,9 @@ void initializeFrabjous(){
           DmxMaster.write(42, 128);
           DmxMaster.write(43, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -170,7 +178,9 @@ void initializeFrabjous(){
           DmxMaster.write(45, 128);
           DmxMaster.write(46, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -185,7 +195,9 @@ void initializeFrabjous(){
           DmxMaster.write(48, 128);
           DmxMaster.write(49, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -200,7 +212,9 @@ void initializeFrabjous(){
           DmxMaster.write(51, 128);
           DmxMaster.write(52, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -215,7 +229,9 @@ void initializeFrabjous(){
           DmxMaster.write(54, 128);
           DmxMaster.write(55, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -230,7 +246,9 @@ void initializeFrabjous(){
           DmxMaster.write(57, 128);
           DmxMaster.write(58, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -245,7 +263,9 @@ void initializeFrabjous(){
           DmxMaster.write(65, 128);
           DmxMaster.write(66, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -260,7 +280,9 @@ void initializeFrabjous(){
           DmxMaster.write(68, 128);
           DmxMaster.write(69, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -275,7 +297,9 @@ void initializeFrabjous(){
           DmxMaster.write(71, 128);
           DmxMaster.write(72, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -290,7 +314,9 @@ void initializeFrabjous(){
           DmxMaster.write(74, 128);
           DmxMaster.write(75, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -305,7 +331,9 @@ void initializeFrabjous(){
           DmxMaster.write(77, 128);
           DmxMaster.write(78, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -320,7 +348,9 @@ void initializeFrabjous(){
           DmxMaster.write(80, 128);
           DmxMaster.write(81, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -335,7 +365,9 @@ void initializeFrabjous(){
           DmxMaster.write(83, 128);
           DmxMaster.write(84, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -350,7 +382,9 @@ void initializeFrabjous(){
           DmxMaster.write(86, 128);
           DmxMaster.write(87, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -365,7 +399,9 @@ void initializeFrabjous(){
           DmxMaster.write(89, 128);
           DmxMaster.write(90, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -380,7 +416,9 @@ void initializeFrabjous(){
           DmxMaster.write(86, 128);
           DmxMaster.write(87, 128);
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         break;
         
@@ -395,7 +433,9 @@ void initializeFrabjous(){
           DmxMaster.write(89, 128);
           DmxMaster.write(90, 128);    
         } else {
-          Serial.println(" - not connected.  Disabled.");
+          Serial.print("tip ");
+          Serial.print(i);
+          Serial.println(" not connected.  Disabled.");        
         }
         delay(1200);     
         

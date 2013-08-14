@@ -30,9 +30,13 @@ void setup() {
   Wire.begin(); // start I2C
   CS.initialize(); // set all registers to default 
   CS.portMode(0, 0b1111111111111111); // set all pins on chip 0 to input
+  CS.portMode(1, 0b1111111111111111); // set all pins on chip 1 to input
   CS.portMode(2, 0b1111111111111111); // set all pins on chip 1 to input
+  CS.portMode(3, 0b1111111111111111); // set all pins on chip 1 to input
   CS.portPullup(0, 0b1111111111111111); // 0 = no pullup, 1 = pullup
+  CS.portPullup(1, 0b1111111111111111); // 0 = no pullup, 1 = pullup
   CS.portPullup(2, 0b1111111111111111); // 0 = no pullup, 1 = pullup
+  CS.portPullup(3, 0b1111111111111111); // 0 = no pullup, 1 = pullup
   
     /* The most common pin for DMX output is pin 3, which DmxMaster
 ** uses by default. If you need to change that, do it here. */
@@ -43,7 +47,7 @@ void setup() {
 ** easily change the number of channels sent here. If you don't
 ** do this, DmxMaster will set the maximum channel number to the
 ** highest channel you DmxMaster.write() to. */
-  DmxMaster.maxChannel(60);
+  DmxMaster.maxChannel(256);
   
   // Begin serial ports
   Serial.begin(9600);
@@ -64,6 +68,20 @@ void loop(void){
       Serial.print("Initializing Frabjous...");
       initializeFrabjous();
       frabjousState = 1;
+      
+      for (int c=0; c < 36; c++){
+        
+        if (disabledPin[c] == 1) {
+          disabledCount++;
+        }
+        
+        if (disabledCount == 20) {
+          allLights();
+          Serial.print("All tips disabled.  All Lights on.");
+        }
+        
+      }
+      
       Serial.print("Frabjous Initialized.");
       
   }
@@ -89,6 +107,70 @@ boolean checkConnection(int pinNum){
   }
   
   return result;
+  
+}
+
+/** ****************************************************
+********************************************************
+*******************************************************/
+
+void allLights(){
+  
+  DmxMaster.write(32, 128);
+  DmxMaster.write(33, 128);
+  DmxMaster.write(34, 128);
+  DmxMaster.write(35, 128);
+  DmxMaster.write(36, 128);
+  DmxMaster.write(37, 128);
+  DmxMaster.write(38, 128);
+  DmxMaster.write(39, 128);
+  DmxMaster.write(40, 128);
+  DmxMaster.write(41, 128);
+  DmxMaster.write(42, 128);
+  DmxMaster.write(43, 128);
+  DmxMaster.write(44, 128);
+  DmxMaster.write(45, 128);
+  DmxMaster.write(46, 128);
+  DmxMaster.write(47, 128);
+  DmxMaster.write(48, 128);
+  DmxMaster.write(49, 128);
+  DmxMaster.write(50, 128);
+  DmxMaster.write(51, 128);
+  DmxMaster.write(52, 128);
+  DmxMaster.write(53, 128);
+  DmxMaster.write(54, 128);
+  DmxMaster.write(55, 128);
+  DmxMaster.write(56, 128);
+  DmxMaster.write(57, 128);
+  DmxMaster.write(58, 128);
+  DmxMaster.write(32, 128);
+  DmxMaster.write(64, 128);
+  DmxMaster.write(65, 128);
+  DmxMaster.write(66, 128);
+  DmxMaster.write(67, 128);
+  DmxMaster.write(68, 128);
+  DmxMaster.write(69, 128);
+  DmxMaster.write(70, 128);
+  DmxMaster.write(71, 128);
+  DmxMaster.write(72, 128);
+  DmxMaster.write(73, 128);
+  DmxMaster.write(74, 128);
+  DmxMaster.write(75, 128);
+  DmxMaster.write(76, 128);
+  DmxMaster.write(77, 128);
+  DmxMaster.write(78, 128);
+  DmxMaster.write(79, 128);
+  DmxMaster.write(80, 128);
+  DmxMaster.write(81, 128);
+  DmxMaster.write(82, 128);
+  DmxMaster.write(83, 128);
+  DmxMaster.write(84, 128);
+  DmxMaster.write(85, 128);
+  DmxMaster.write(86, 128);
+  DmxMaster.write(87, 128);
+  DmxMaster.write(88, 128);
+  DmxMaster.write(89, 128);
+  DmxMaster.write(90, 128);
   
 }
 

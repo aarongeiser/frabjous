@@ -75,7 +75,7 @@ void loop(void){
           disabledCount++;
         }
         
-        if (disabledCount == 20) {
+        if (disabledCount >= 20) {
           allLights();
           Serial.print("All tips disabled.  All Lights on.");
         }

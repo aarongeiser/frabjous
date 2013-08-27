@@ -32,11 +32,11 @@ void setup() {
   CS.initialize(); // set all registers to default 
   CS.portMode(0, 0b1111111111111111); // set all pins on chip 0 to input
   CS.portMode(1, 0b1111111111111111); // set all pins on chip 1 to input
-  CS.portMode(2, 0b1111111111111111); // set all pins on chip 1 to input
+  CS.portMode(2, 0b1111111111111111); // set all pins on chip 2 to input
   // CS.portMode(3, 0b1111111111111111); // set all pins on chip 1 to input
   CS.portPullup(0, 0b1111111111111111); // 0 = no pullup, 1 = pullup
   CS.portPullup(1, 0b1111111111111111); // 0 = no pullup, 1 = pullup
-  CS.portPullup(2, 0b1111111111111111); // 0 = no pullup, 1 = pullup
+  CS.portPullup(2, 0b1111111111111111); // 0 = no pullup, 2 = pullup
   // CS.portPullup(3, 0b1111111111111111); // 0 = no pullup, 1 = pullup
   
     /* The most common pin for DMX output is pin 3, which DmxMaster

@@ -546,9 +546,9 @@ void readTouchInputs(){
             switch (i) {
               case 0:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(32, 64);
-                  DmxMaster.write(33, 64);
-                  DmxMaster.write(34, 64);
+                  DmxMaster.write(32, 50);
+                  DmxMaster.write(33, 50);
+                  DmxMaster.write(34, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -563,9 +563,9 @@ void readTouchInputs(){
                 
               case 1:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(35, 64);
-                  DmxMaster.write(36, 64);
-                  DmxMaster.write(37, 64);
+                  DmxMaster.write(35, 50);
+                  DmxMaster.write(36, 50);
+                  DmxMaster.write(37, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -580,9 +580,9 @@ void readTouchInputs(){
                 
               case 2:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(38, 64);
-                  DmxMaster.write(39, 64);
-                  DmxMaster.write(40, 64);
+                  DmxMaster.write(38, 50);
+                  DmxMaster.write(39, 50);
+                  DmxMaster.write(40, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -597,9 +597,9 @@ void readTouchInputs(){
                 
               case 3:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(41, 64);
-                  DmxMaster.write(42, 64);
-                  DmxMaster.write(43, 64);
+                  DmxMaster.write(41, 50);
+                  DmxMaster.write(42, 50);
+                  DmxMaster.write(43, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -614,9 +614,9 @@ void readTouchInputs(){
                 
               case 4:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(44, 64);
-                  DmxMaster.write(45, 64);
-                  DmxMaster.write(46, 64);
+                  DmxMaster.write(44, 50);
+                  DmxMaster.write(45, 50);
+                  DmxMaster.write(46, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -631,9 +631,9 @@ void readTouchInputs(){
                 
               case 5:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(47, 64);
-                  DmxMaster.write(48, 64);
-                  DmxMaster.write(49, 64);
+                  DmxMaster.write(47, 50);
+                  DmxMaster.write(48, 50);
+                  DmxMaster.write(49, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -648,9 +648,9 @@ void readTouchInputs(){
                 
               case 6:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(50, 64);
-                  DmxMaster.write(51, 64);
-                  DmxMaster.write(52, 64);
+                  DmxMaster.write(50, 50);
+                  DmxMaster.write(51, 50);
+                  DmxMaster.write(52, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -665,9 +665,9 @@ void readTouchInputs(){
                 
               case 7:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(53, 64);
-                  DmxMaster.write(54, 64);
-                  DmxMaster.write(55, 64);
+                  DmxMaster.write(53, 50);
+                  DmxMaster.write(54, 50);
+                  DmxMaster.write(55, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -682,9 +682,9 @@ void readTouchInputs(){
                 
               case 8:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(56, 64);
-                  DmxMaster.write(57, 64);
-                  DmxMaster.write(58, 64);
+                  DmxMaster.write(56, 50);
+                  DmxMaster.write(57, 50);
+                  DmxMaster.write(58, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -699,9 +699,9 @@ void readTouchInputs(){
                 
               case 9:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(64, 64);
-                  DmxMaster.write(65, 64);
-                  DmxMaster.write(66, 64);
+                  DmxMaster.write(64, 50);
+                  DmxMaster.write(65, 50);
+                  DmxMaster.write(66, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -716,9 +716,9 @@ void readTouchInputs(){
                 
               case 10:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(67, 64);
-                  DmxMaster.write(68, 64);
-                  DmxMaster.write(69, 64);
+                  DmxMaster.write(67, 50);
+                  DmxMaster.write(68, 50);
+                  DmxMaster.write(69, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -733,9 +733,9 @@ void readTouchInputs(){
                 
               case 11:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(70, 64);
-                  DmxMaster.write(71, 64);
-                  DmxMaster.write(72, 64);
+                  DmxMaster.write(70, 50);
+                  DmxMaster.write(71, 50);
+                  DmxMaster.write(72, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -750,9 +750,9 @@ void readTouchInputs(){
                 
               case 12:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(73, 64);
-                  DmxMaster.write(74, 64);
-                  DmxMaster.write(75, 64);
+                  DmxMaster.write(73, 50);
+                  DmxMaster.write(74, 50);
+                  DmxMaster.write(75, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -767,9 +767,9 @@ void readTouchInputs(){
                 
               case 13:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(76, 64);
-                  DmxMaster.write(77, 64);
-                  DmxMaster.write(78, 64);
+                  DmxMaster.write(76, 50);
+                  DmxMaster.write(77, 50);
+                  DmxMaster.write(78, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -784,9 +784,9 @@ void readTouchInputs(){
                 
               case 14:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(79, 64);
-                  DmxMaster.write(80, 64);
-                  DmxMaster.write(81, 64);
+                  DmxMaster.write(79, 50);
+                  DmxMaster.write(80, 50);
+                  DmxMaster.write(81, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -801,9 +801,9 @@ void readTouchInputs(){
                 
               case 15:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(82, 64);
-                  DmxMaster.write(83, 64);
-                  DmxMaster.write(84, 64);
+                  DmxMaster.write(82, 50);
+                  DmxMaster.write(83, 50);
+                  DmxMaster.write(84, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -818,9 +818,9 @@ void readTouchInputs(){
                 
               case 32:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -835,9 +835,9 @@ void readTouchInputs(){
                 
               case 33:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64);
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -852,9 +852,9 @@ void readTouchInputs(){
                 
               case 34:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -869,9 +869,9 @@ void readTouchInputs(){
                 
               case 35:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64); 
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50); 
                 } else {
                   delay(10);
                   Serial.print("pin ");
@@ -892,341 +892,341 @@ void readTouchInputs(){
             switch (i) {
               case 0:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(32, 64);
-                  DmxMaster.write(33, 64);
-                  DmxMaster.write(34, 64);
+                  DmxMaster.write(32, 50);
+                  DmxMaster.write(33, 50);
+                  DmxMaster.write(34, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 60, 100);
-                  DmxMaster.write(32, 64);
-                  DmxMaster.write(33, 64);
-                  DmxMaster.write(34, 64);
+                  DmxMaster.write(32, 50);
+                  DmxMaster.write(33, 50);
+                  DmxMaster.write(34, 50);
                 }
                 break;
                 
               case 1:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(35, 64);
-                  DmxMaster.write(36, 64);
-                  DmxMaster.write(37, 64);
+                  DmxMaster.write(35, 50);
+                  DmxMaster.write(36, 50);
+                  DmxMaster.write(37, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 61, 100);
-                  DmxMaster.write(35, 64);
-                  DmxMaster.write(36, 64);
-                  DmxMaster.write(37, 64);
+                  DmxMaster.write(35, 50);
+                  DmxMaster.write(36, 50);
+                  DmxMaster.write(37, 50);
                 }
                 break;
                 
               case 2:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(38, 64);
-                  DmxMaster.write(39, 64);
-                  DmxMaster.write(40, 64);
+                  DmxMaster.write(38, 50);
+                  DmxMaster.write(39, 50);
+                  DmxMaster.write(40, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 62, 100);
-                  DmxMaster.write(38, 64);
-                  DmxMaster.write(39, 64);
-                  DmxMaster.write(40, 64);
+                  DmxMaster.write(38, 50);
+                  DmxMaster.write(39, 50);
+                  DmxMaster.write(40, 50);
                 }
                 break;
                 
               case 3:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(41, 64);
-                  DmxMaster.write(42, 64);
-                  DmxMaster.write(43, 64);
+                  DmxMaster.write(41, 50);
+                  DmxMaster.write(42, 50);
+                  DmxMaster.write(43, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 63, 100);
-                  DmxMaster.write(41, 64);
-                  DmxMaster.write(42, 64);
-                  DmxMaster.write(43, 64);
+                  DmxMaster.write(41, 50);
+                  DmxMaster.write(42, 50);
+                  DmxMaster.write(43, 50);
                 }
                 break;
                 
               case 4:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(44, 64);
-                  DmxMaster.write(45, 64);
-                  DmxMaster.write(46, 64);
+                  DmxMaster.write(44, 50);
+                  DmxMaster.write(45, 50);
+                  DmxMaster.write(46, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 64, 100);
-                  DmxMaster.write(44, 64);
-                  DmxMaster.write(45, 64);
-                  DmxMaster.write(46, 64);
+                  DmxMaster.write(44, 50);
+                  DmxMaster.write(45, 50);
+                  DmxMaster.write(46, 50);
                 }
                 break;
                 
               case 5:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(47, 64);
-                  DmxMaster.write(48, 64);
-                  DmxMaster.write(49, 64);
+                  DmxMaster.write(47, 50);
+                  DmxMaster.write(48, 50);
+                  DmxMaster.write(49, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 65, 100);
-                  DmxMaster.write(47, 64);
-                  DmxMaster.write(48, 64);
-                  DmxMaster.write(49, 64);
+                  DmxMaster.write(47, 50);
+                  DmxMaster.write(48, 50);
+                  DmxMaster.write(49, 50);
                 }
                 break;
                 
               case 6:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(50, 64);
-                  DmxMaster.write(51, 64);
-                  DmxMaster.write(52, 64);
+                  DmxMaster.write(50, 50);
+                  DmxMaster.write(51, 50);
+                  DmxMaster.write(52, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 66, 100);
-                  DmxMaster.write(50, 64);
-                  DmxMaster.write(51, 64);
-                  DmxMaster.write(52, 64);
+                  DmxMaster.write(50, 50);
+                  DmxMaster.write(51, 50);
+                  DmxMaster.write(52, 50);
                 }
                 break;
                 
               case 7:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(53, 64);
-                  DmxMaster.write(54, 64);
-                  DmxMaster.write(55, 64);
+                  DmxMaster.write(53, 50);
+                  DmxMaster.write(54, 50);
+                  DmxMaster.write(55, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 67, 100);
-                  DmxMaster.write(53, 64);
-                  DmxMaster.write(54, 64);
-                  DmxMaster.write(55, 64);
+                  DmxMaster.write(53, 50);
+                  DmxMaster.write(54, 50);
+                  DmxMaster.write(55, 50);
                 }
                 break;
                 
               case 8:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(56, 64);
-                  DmxMaster.write(57, 64);
-                  DmxMaster.write(58, 64);
+                  DmxMaster.write(56, 50);
+                  DmxMaster.write(57, 50);
+                  DmxMaster.write(58, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 68, 100);
-                  DmxMaster.write(56, 64);
-                  DmxMaster.write(57, 64);
-                  DmxMaster.write(58, 64);
+                  DmxMaster.write(56, 50);
+                  DmxMaster.write(57, 50);
+                  DmxMaster.write(58, 50);
                 }
                 break;
                 
               case 9:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(64, 64);
-                  DmxMaster.write(65, 64);
-                  DmxMaster.write(66, 64);
+                  DmxMaster.write(64, 50);
+                  DmxMaster.write(65, 50);
+                  DmxMaster.write(66, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 69, 100);
-                  DmxMaster.write(64, 64);
-                  DmxMaster.write(65, 64);
-                  DmxMaster.write(66, 64);
+                  DmxMaster.write(64, 50);
+                  DmxMaster.write(65, 50);
+                  DmxMaster.write(66, 50);
                 }
                 break;
                 
               case 10:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(67, 64);
-                  DmxMaster.write(68, 64);
-                  DmxMaster.write(69, 64);
+                  DmxMaster.write(67, 50);
+                  DmxMaster.write(68, 50);
+                  DmxMaster.write(69, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 70, 100);
-                  DmxMaster.write(67, 64);
-                  DmxMaster.write(68, 64);
-                  DmxMaster.write(69, 64);
+                  DmxMaster.write(67, 50);
+                  DmxMaster.write(68, 50);
+                  DmxMaster.write(69, 50);
                 }
                 break;
                 
               case 11:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(70, 64);
-                  DmxMaster.write(71, 64);
-                  DmxMaster.write(72, 64);
+                  DmxMaster.write(70, 50);
+                  DmxMaster.write(71, 50);
+                  DmxMaster.write(72, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 71, 100);
-                  DmxMaster.write(70, 64);
-                  DmxMaster.write(71, 64);
-                  DmxMaster.write(72, 64);
+                  DmxMaster.write(70, 50);
+                  DmxMaster.write(71, 50);
+                  DmxMaster.write(72, 50);
                 }
                 break;
                 
               case 12:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(73, 64);
-                  DmxMaster.write(74, 64);
-                  DmxMaster.write(75, 64);
+                  DmxMaster.write(73, 50);
+                  DmxMaster.write(74, 50);
+                  DmxMaster.write(75, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 72, 100);
-                  DmxMaster.write(73, 64);
-                  DmxMaster.write(74, 64);
-                  DmxMaster.write(75, 64);
+                  DmxMaster.write(73, 50);
+                  DmxMaster.write(74, 50);
+                  DmxMaster.write(75, 50);
                 }
                 break;
                 
               case 13:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(76, 64);
-                  DmxMaster.write(77, 64);
-                  DmxMaster.write(78, 64);
+                  DmxMaster.write(76, 50);
+                  DmxMaster.write(77, 50);
+                  DmxMaster.write(78, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 73, 100);
-                  DmxMaster.write(76, 64);
-                  DmxMaster.write(77, 64);
-                  DmxMaster.write(78, 64);
+                  DmxMaster.write(76, 50);
+                  DmxMaster.write(77, 50);
+                  DmxMaster.write(78, 50);
                 }
                 break;
                 
               case 14:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(79, 64);
-                  DmxMaster.write(80, 64);
-                  DmxMaster.write(81, 64);
+                  DmxMaster.write(79, 50);
+                  DmxMaster.write(80, 50);
+                  DmxMaster.write(81, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 74, 100);
-                  DmxMaster.write(79, 64);
-                  DmxMaster.write(80, 64);
-                  DmxMaster.write(81, 64);
+                  DmxMaster.write(79, 50);
+                  DmxMaster.write(80, 50);
+                  DmxMaster.write(81, 50);
                 }
                 break;
                 
               case 15:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(82, 64);
-                  DmxMaster.write(83, 64);
-                  DmxMaster.write(84, 64);
+                  DmxMaster.write(82, 50);
+                  DmxMaster.write(83, 50);
+                  DmxMaster.write(84, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 75, 100);
-                  DmxMaster.write(82, 64);
-                  DmxMaster.write(83, 64);
-                  DmxMaster.write(84, 64);
+                  DmxMaster.write(82, 50);
+                  DmxMaster.write(83, 50);
+                  DmxMaster.write(84, 50);
                 }
                 break;
                 
               case 32:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 76, 100);
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 }
                 break;
                 
               case 33:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64);
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 77, 100);
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64);
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50);
                 }
                 break;
                 
               case 34:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 78, 100);
-                  DmxMaster.write(85, 64);
-                  DmxMaster.write(86, 64);
-                  DmxMaster.write(87, 64);
+                  DmxMaster.write(85, 50);
+                  DmxMaster.write(86, 50);
+                  DmxMaster.write(87, 50);
                 }
                 break;
                 
               case 35:
                 if (disabledPin[i] == 1) {
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64);
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50);
                 } else {
                   delay(10);
                   Serial.print("pin ");
                   Serial.print(i);
                   Serial.println(" is no longer being touched");
                   midiSend(128, 79, 100);
-                  DmxMaster.write(88, 64);
-                  DmxMaster.write(89, 64);
-                  DmxMaster.write(90, 64);
+                  DmxMaster.write(88, 50);
+                  DmxMaster.write(89, 50);
+                  DmxMaster.write(90, 50);
                 }
   
              }  

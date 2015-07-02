@@ -53,6 +53,10 @@
 #define	ATO_CFGT	0x7F
 
 
-// Global Constants (0x0C + 0x0A)
-#define TOU_THRESH	0x55
-#define	REL_THRESH	0x9A
+// Global Constants
+#define TOU_THRESH	0x3F
+#define	REL_THRESH	0x3A
+
+// Global Constants
+//#define TOU_THRESH	0x6F
+//#define	REL_THRESH	0x6A

@@ -1,156 +1,221 @@
-#include <MIDI.h>
-#include <WiFi.h>
-#include <WiFiClient.h>
-#include <WiFiServer.h>
 #include <SPI.h>
 #include <Wire.h>
 #include "mpr121.h"
-#include <RAS.h>
+#include <DmxMaster.h>
+#include <SoftwareSerial.h>
 
-/////////////////////////
-// WiFi Shield Variables
-/////////////////////////
-char ssid[] = "pterodactyl"; //  your network SSID (name) 
-char pass[] = "5kM3Ywpf2";    // your network password (use for WPA, or use as key for WEP)
-int keyIndex = 0;            // your network key Index number (needed only for WEP)
-int status = WL_IDLE_STATUS; // status of the wifi connection
+// Set software serial pins
+#define rxPin 8
+#define txPin 9
+SoftwareSerial mySerial(rxPin,txPin); // RX, TX
 
-// initialize the library instance:
-WiFiClient client;
-
-/////////////////////////
 // Touch Sensor Variables
-/////////////////////////
 int irqpin = 2;  // Digital 2
 boolean touchStates[12]; //to keep track of the previous touch states
+boolean touchStatesTwo[12]; //to keep track of the previous touch states
 
-/////////////////////////
-// Rugged Audio Shield Variables
-/////////////////////////
-// RAS RAS;
-// int lastVolume;
+// Define thresholds for points
+#define SHORT_POINT_ON 0x09
+#define SHORT_POINT_OFF 0x05
 
-////////////////////////////////////////////////////////////////////////////
+#define MED_POINT_ON 0x03
+#define MED_POINT_OFF 0x01
+
+#define LONG_POINT_ON 0x04
+#define LONG_POINT_OFF 0x01
+
+/** ****************************************************
+********************************************************
+*******************************************************/
+
 //  Initialization
-////////////////////////////////////////////////////////////////////////////
 void setup(void){
   
-  ///////////////////////////////
-  // WiFi Connect
-  ///////////////////////////////
-  
-  // check for the presence of the shield:
-  if (WiFi.status() == WL_NO_SHIELD) {
-    Serial.println("WiFi shield not present"); 
-    // don't continue:
-    while(true);
-  } 
-  
-  // attempt to connect to Wifi network:
-  while ( status != WL_CONNECTED) { 
-    Serial.print("Attempting to connect to SSID: ");
-    Serial.println(ssid);
-    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:    
-    status = WiFi.begin(ssid, pass);  
- 
-    // wait 10 seconds for connection:
-    delay(10000);
-  } 
-  // you're connected now, so print out the status:
-  printWifiStatus();
-  
-  ////////////////////////////////
   // Touch Sensor
-  ///////////////////////////////
-  
   pinMode(irqpin, INPUT);
   digitalWrite(irqpin, HIGH); //enable pullup resistor
   
-  Serial.begin(9600);
   Wire.begin();
-
   mpr121_setup();
+  mpr121_setupTwo();
   
-  ///////////////////////////////
-  // Rugged Audio
-  ///////////////////////////////
+  /* The most common pin for DMX output is pin 3, which DmxMaster
+** uses by default. If you need to change that, do it here. */
+  DmxMaster.usePin(3);
+
+  /* DMX devices typically need to receive a complete set of channels
+** even if you only need to adjust the first channel. You can
+** easily change the number of channels sent here. If you don't
+** do this, DmxMaster will set the maximum channel number to the
+** highest channel you DmxMaster.write() to. */
+  DmxMaster.maxChannel(60);
   
-  // Rugged Audio Shield
-  // RAS.begin();
-  // RAS.InitSD();
-  // delay(100);
-  // RAS.OutputEnable();
+  // Begin serial ports
+  Serial.begin(9600);
   
+  /*  set the data rate for the SoftwareSerial port  */
+  mySerial.begin(31250);
+
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Do Things Good
-////////////////////////////////////////////////////////////////////////////
+/** ****************************************************
+********************************************************
+*******************************************************/
+
 void loop(void){
-  //delay(1000);
-  //RAS.PlayWAV("test1.wav");
-  //delay(1000);
-  //RAS.PlayWAV("test2.wav");
-  //delay(1000);
-  //RAS.PlayWAV("test3.wav");
   readTouchInputs();
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Methods
-////////////////////////////////////////////////////////////////////////////
+/** ****************************************************
+********************************************************
+*******************************************************/
 
+//********************  FIRST Capacitive Touch Sensor
 void readTouchInputs(){
+  
   if(!checkInterrupt()){
     
     //read the touch state from the MPR121
-    Wire.requestFrom(0x5A,2); 
-    
+    Wire.requestFrom(0x5A,3);  
     byte LSB = Wire.read();
-    byte MSB = Wire.read();
-    
+    byte MSB = Wire.read();  
     uint16_t touched = ((MSB << 8) | LSB); //16bits that make up the touch states
-
+  
+    for (int i=0; i < 12; i++){  // Check which electrodes were pressed
     
-    for (int i=0; i < 12; i++){  // Check what electrodes were pressed
       if(touched & (1<<i)){
       
         if(touchStates[i] == 0){
           switch (i) {
             case 0:
-            
-              // Rugged Audio Shield (unused)
-              // delay(100);
-              // RAS.PlayWAV("test1.wav");
-              
-              // Test Printing
+              delay(5);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 60, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
         
               break;
             case 1:
-            
-              // Rugged Audio Shield (unused)
-              // delay(100);
-              // RAS.PlayWAV("test2.wav");
-              
-              // Test Printing
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 61, 100);
+              DmxMaster.write(35, 128);
+              DmxMaster.write(36, 128);
+              DmxMaster.write(37, 128);
         
               break; 
             case 2:
-            
-              // Rugged Audio Shield (unused)
-              // delay(100);
-              // RAS.PlayWAV("test3.wav");
-              
-              // Test Printing
+              delay(10);
               Serial.print("pin ");
               Serial.print(i);
               Serial.println(" is being touched");
+              midiSend(144, 62, 100);
+              DmxMaster.write(38, 128);
+              DmxMaster.write(39, 128);
+              DmxMaster.write(40, 128);
+
+              
+              break;
+            case 3:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 63, 100);
+              DmxMaster.write(41, 128);
+              DmxMaster.write(42, 128);
+              DmxMaster.write(43, 128);
+        
+              break; 
+            case 4:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 64, 100);
+              DmxMaster.write(44, 128);
+              DmxMaster.write(45, 128);
+              DmxMaster.write(46, 128);
+              
+              break;
+            case 5:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 65, 100);
+              DmxMaster.write(47, 128);
+              DmxMaster.write(48, 128);
+              DmxMaster.write(49, 128);
+        
+              break; 
+            case 6:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 66, 100);
+              DmxMaster.write(50, 128);
+              DmxMaster.write(51, 128);
+              DmxMaster.write(52, 128);
+              
+              break;
+            case 7:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 67, 100);
+              DmxMaster.write(53, 128);
+              DmxMaster.write(54, 128);
+              DmxMaster.write(55, 128);
+        
+              break; 
+            case 8:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 68, 100);
+              DmxMaster.write(56, 128);
+              DmxMaster.write(57, 128);
+              DmxMaster.write(58, 128);
+              
+              break;
+            case 9:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 69, 100);
+              DmxMaster.write(64, 128);
+              DmxMaster.write(65, 128);
+              DmxMaster.write(66, 128);
+        
+              break; 
+            case 10:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 70, 100);
+              DmxMaster.write(67, 128);
+              DmxMaster.write(68, 128);
+              DmxMaster.write(69, 128);
+              
+              break;
+            case 11:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 71, 100);
+        
            }
         
         }else if(touchStates[i] == 1){
@@ -160,13 +225,136 @@ void readTouchInputs(){
         touchStates[i] = 1;      
       }else{
         if(touchStates[i] == 1){
-          
-          // Test Printing
-          Serial.print("pin ");
-          Serial.print(i);
-          Serial.println(" is no longer being touched");
-          
-          //pin i is no longer being touched
+          switch (i) {
+            case 0:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 60, 100);
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
+        
+              break;
+            case 1:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 61, 100);
+              DmxMaster.write(35, 0);
+              DmxMaster.write(36, 0);
+              DmxMaster.write(37, 0);
+        
+              break; 
+            case 2:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 62, 100);
+              DmxMaster.write(38, 0);
+              DmxMaster.write(39, 0);
+              DmxMaster.write(40, 0);
+              
+              break;
+            case 3:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 63, 100);
+              DmxMaster.write(41, 0);
+              DmxMaster.write(42, 0);
+              DmxMaster.write(43, 0);
+        
+              break; 
+            case 4:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 64, 100);
+              DmxMaster.write(44, 0);
+              DmxMaster.write(45, 0);
+              DmxMaster.write(46, 0);
+              
+              break;
+            case 5:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 65, 100);
+              DmxMaster.write(47, 0);
+              DmxMaster.write(48, 0);
+              DmxMaster.write(49, 0);
+        
+              break; 
+            case 6:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 66, 100);
+              DmxMaster.write(50, 0);
+              DmxMaster.write(51, 0);
+              DmxMaster.write(52, 0);
+              
+              break;
+            case 7:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 67, 100);
+              DmxMaster.write(53, 0);
+              DmxMaster.write(54, 0);
+              DmxMaster.write(55, 0);
+        
+              break; 
+            case 8:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 68, 100);
+              DmxMaster.write(56, 0);
+              DmxMaster.write(57, 0);
+              DmxMaster.write(58, 0);
+              
+              break;
+            case 9:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 69, 100);
+              DmxMaster.write(64, 0);
+              DmxMaster.write(65, 0);
+              DmxMaster.write(66, 0);
+        
+              break; 
+            case 10:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 70, 100);
+              DmxMaster.write(67, 0);
+              DmxMaster.write(68, 0);
+              DmxMaster.write(69, 0);
+              
+              break;
+            case 11:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 71, 100);
+        
+           }
        }
         
         touchStates[i] = 0;
@@ -175,9 +363,96 @@ void readTouchInputs(){
     }
     
   }
+  
+  
+//********************  SECOND Capacitive Touch Sensor
+  if(!checkInterruptTwo()){
+    
+    // read the touch state from the MPR121
+    Wire.requestFrom(0x5D,4); 
+    
+    byte LSB = Wire.read();
+    byte MSB = Wire.read();
+    
+    uint16_t touched = ((MSB << 8) | LSB); // 16bits that make up the touch states
+  
+    for (int i=0; i < 12; i++){  // Check what electrodes were pressed
+    
+      if(touched & (1<<i)){
+      
+        if(touchStatesTwo[i] == 0){
+          switch (i) {
+            case 0:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 72, 100);
+              DmxMaster.write(32, 128);
+              DmxMaster.write(33, 128);
+              DmxMaster.write(34, 128);
+        
+              break;
+            case 1:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 73, 100);
+        
+              break; 
+            case 3:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is being touched");
+              midiSend(144, 74, 100);
+           }
+        
+        }else if(touchStatesTwo[i] == 1){
+         // is still being touched        
+        }  
+      
+        touchStatesTwo[i] = 1;      
+      }else{
+        if(touchStatesTwo[i] == 1){
+          switch (i) {
+            case 0:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 72, 100);              
+              DmxMaster.write(32, 0);
+              DmxMaster.write(33, 0);
+              DmxMaster.write(34, 0);
+        
+              break;
+            case 1:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 73, 100);
+        
+              break; 
+            case 3:
+              delay(10);
+              Serial.print("pin ");
+              Serial.print(i);
+              Serial.println(" is no longer being touched");
+              midiSend(128, 74, 100);
+           }
+       }
+        
+        touchStatesTwo[i] = 0;
+      }
+    
+    }
+    
+  }
+  
 }
-
-
 
 
 void mpr121_setup(void){
@@ -197,41 +472,41 @@ void mpr121_setup(void){
   set_register(0x5A, FDL_F, 0x02);
   
   // Section C - Sets touch and release thresholds for each electrode
-  set_register(0x5A, ELE0_T, TOU_THRESH);
-  set_register(0x5A, ELE0_R, REL_THRESH);
+  set_register(0x5A, ELE0_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE0_R, SHORT_POINT_OFF);
  
-  set_register(0x5A, ELE1_T, TOU_THRESH);
-  set_register(0x5A, ELE1_R, REL_THRESH);
+  set_register(0x5A, ELE1_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE1_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE2_T, TOU_THRESH);
-  set_register(0x5A, ELE2_R, REL_THRESH);
+  set_register(0x5A, ELE2_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE2_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE3_T, TOU_THRESH);
-  set_register(0x5A, ELE3_R, REL_THRESH);
+  set_register(0x5A, ELE3_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE3_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE4_T, TOU_THRESH);
-  set_register(0x5A, ELE4_R, REL_THRESH);
+  set_register(0x5A, ELE4_T, SHORT_POINT_ON);
+  set_register(0x5A, ELE4_R, SHORT_POINT_OFF);
   
-  set_register(0x5A, ELE5_T, TOU_THRESH);
-  set_register(0x5A, ELE5_R, REL_THRESH);
+  set_register(0x5A, ELE5_T, LONG_POINT_ON);
+  set_register(0x5A, ELE5_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE6_T, TOU_THRESH);
-  set_register(0x5A, ELE6_R, REL_THRESH);
+  set_register(0x5A, ELE6_T, MED_POINT_ON);
+  set_register(0x5A, ELE6_R, MED_POINT_OFF);
   
-  set_register(0x5A, ELE7_T, TOU_THRESH);
-  set_register(0x5A, ELE7_R, REL_THRESH);
+  set_register(0x5A, ELE7_T, LONG_POINT_ON);
+  set_register(0x5A, ELE7_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE8_T, TOU_THRESH);
-  set_register(0x5A, ELE8_R, REL_THRESH);
+  set_register(0x5A, ELE8_T, MED_POINT_ON);
+  set_register(0x5A, ELE8_R, MED_POINT_OFF);
   
-  set_register(0x5A, ELE9_T, TOU_THRESH);
-  set_register(0x5A, ELE9_R, REL_THRESH);
+  set_register(0x5A, ELE9_T, LONG_POINT_ON);
+  set_register(0x5A, ELE9_R, LONG_POINT_OFF);
   
-  set_register(0x5A, ELE10_T, TOU_THRESH);
-  set_register(0x5A, ELE10_R, REL_THRESH);
+  set_register(0x5A, ELE10_T, 0x01);
+  set_register(0x5A, ELE10_R, 0x00);
   
-  set_register(0x5A, ELE11_T, TOU_THRESH);
-  set_register(0x5A, ELE11_R, REL_THRESH);
+  set_register(0x5A, ELE11_T, LONG_POINT_ON);
+  set_register(0x5A, ELE11_R, LONG_POINT_OFF);
   
   // Section D
   // Set the Filter Configuration
@@ -246,16 +521,96 @@ void mpr121_setup(void){
   
   // Section F
   // Enable Auto Config and auto Reconfig
-  /*set_register(0x5A, ATO_CFG0, 0x0B);
-  set_register(0x5A, ATO_CFGU, 0xC9);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V   set_register(0x5A, ATO_CFGL, 0x82);  // LSL = 0.65*USL = 0x82 @3.3V
-  set_register(0x5A, ATO_CFGT, 0xB5);*/  // Target = 0.9*USL = 0xB5 @3.3V
+  set_register(0x5A, ATO_CFG0, 0x0B);
+  set_register(0x5A, ATO_CFGU, 0x0F);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+  set_register(0x5A, ATO_CFGL, 0x01);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5A, ATO_CFGT, 0x08);  // Target = 0.9*USL = 0xB5 @3.3V
   
-  set_register(0x5A, ELE_CFG, 0x0C);
+  //set_register(0x5A, ELE_CFG, 0x0C);
+  
+}
+
+void mpr121_setupTwo(void){
+
+  set_register(0x5D, ELE_CFG, 0x00); 
+  
+  // Section A - Controls filtering when data is > baseline.
+  set_register(0x5D, MHD_R, 0x01);
+  set_register(0x5D, NHD_R, 0x01);
+  set_register(0x5D, NCL_R, 0x00);
+  set_register(0x5D, FDL_R, 0x00);
+
+  // Section B - Controls filtering when data is < baseline.
+  set_register(0x5D, MHD_F, 0x01);
+  set_register(0x5D, NHD_F, 0x01);
+  set_register(0x5D, NCL_F, 0xFF);
+  set_register(0x5D, FDL_F, 0x02);
+  
+  // Section C - Sets touch and release thresholds for each electrode
+  set_register(0x5D, ELE0_T, MED_POINT_ON);
+  set_register(0x5D, ELE0_R, MED_POINT_OFF);
+ 
+  set_register(0x5D, ELE1_T, LONG_POINT_ON);
+  set_register(0x5D, ELE1_R, LONG_POINT_OFF);
+  
+  set_register(0x5D, ELE2_T, MED_POINT_ON);
+  set_register(0x5D, ELE2_R, MED_POINT_OFF);
+  
+  set_register(0x5D, ELE3_T, MED_POINT_ON);
+  set_register(0x5D, ELE3_R, MED_POINT_OFF);
+  
+  set_register(0x5D, ELE4_T, MED_POINT_ON);
+  set_register(0x5D, ELE4_R, MED_POINT_OFF);
+  
+  set_register(0x5D, ELE5_T, MED_POINT_ON);
+  set_register(0x5D, ELE5_R, MED_POINT_OFF);
+
+  set_register(0x5D, ELE6_T, MED_POINT_ON);
+  set_register(0x5D, ELE6_R, MED_POINT_OFF);
+  
+  set_register(0x5D, ELE7_T, MED_POINT_ON);
+  set_register(0x5D, ELE7_R, MED_POINT_OFF);
+  
+  set_register(0x5D, ELE8_T, TOU_THRESH);
+  set_register(0x5D, ELE8_R, REL_THRESH);
+  
+  set_register(0x5D, ELE9_T, TOU_THRESH);
+  set_register(0x5D, ELE9_R, REL_THRESH);
+  
+  set_register(0x5D, ELE10_T, TOU_THRESH);
+  set_register(0x5D, ELE10_R, REL_THRESH);
+  
+  set_register(0x5D, ELE11_T, TOU_THRESH);
+  set_register(0x5D, ELE11_R, REL_THRESH);
+  
+  // Section D
+  // Set the Filter Configuration
+  // Set ESI2
+  set_register(0x5D, FIL_CFG, 0x04);
+  
+  // Section E
+  // Electrode Configuration
+  // Set ELE_CFG to 0x00 to return to standby mode
+  set_register(0x5D, ELE_CFG, 0x0C);  // Enables all 12 Electrodes
+  
+  
+  // Section F
+  // Enable Auto Config and auto Reconfig
+  set_register(0x5D, ATO_CFG0, 0x0B);
+  set_register(0x5D, ATO_CFGU, 220);  // USL = (Vdd-0.7)/vdd*256 = 0xC9 @3.3V    set_register(0x5A, ATO_CFGU, 0xC9);   
+  set_register(0x5D, ATO_CFGL, 101);  // LSL = 0.65*USL = 0x82 @3.3V             set_register(0x5A, ATO_CFGL, 0x82);
+  set_register(0x5D, ATO_CFGT, 160);  // Target = 0.9*USL = 0xB5 @3.3V
+  
+  //set_register(0x5D, ELE_CFG, 0x0C);
   
 }
 
 
 boolean checkInterrupt(void){
+  return digitalRead(irqpin);
+}
+
+boolean checkInterruptTwo(void){
   return digitalRead(irqpin);
 }
 
@@ -267,19 +622,11 @@ void set_register(int address, unsigned char r, unsigned char v){
     Wire.endTransmission();
 }
 
-void printWifiStatus() {
-  // print the SSID of the network you're attached to:
-  Serial.print("SSID: ");
-  Serial.println(WiFi.SSID());
-
-  // print your WiFi shield's IP address:
-  IPAddress ip = WiFi.localIP();
-  Serial.print("IP Address: ");
-  Serial.println(ip);
-
-  // print the received signal strength:
-  long rssi = WiFi.RSSI();
-  Serial.print("signal strength (RSSI):");
-  Serial.print(rssi);
-  Serial.println(" dBm");
+//  plays a MIDI note.  Doesn't check to see that
+//  cmd is greater than 127, or that data values are  less than 127:
+//  Uses softSerial on pins 10 and 11
+void midiSend(int cmd, int pitch, int velocity) {
+  mySerial.write(cmd);
+  mySerial.write(pitch);
+  mySerial.write(velocity);
 }
